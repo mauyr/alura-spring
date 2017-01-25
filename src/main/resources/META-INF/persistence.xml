@@ -4,20 +4,17 @@
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-    <persistence-unit name="livraria">
+    <persistence-unit name="loja">
 
         <!-- Implementação do JPA, no nosso caso Hibernate -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- Aqui são listadas todas as entidades -->
-        <class>br.com.caelum.livraria.model.Autor</class>
-        <class>br.com.caelum.livraria.model.Livro</class>
-        <class>br.com.caelum.livraria.model.Usuario</class>
 
         <properties>
             <!-- Propriedades JDBC -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/livraria" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/loja" />
             <property name="javax.persistence.jdbc.user" value="postgres" />
             <property name="javax.persistence.jdbc.password" value="postgres" />
 

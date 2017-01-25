@@ -1,4 +1,4 @@
-package br.com.caelum.livraria.dao;
+package br.com.caelum.loja.dao;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class JPAUtil implements Serializable {
 
 	private static EntityManagerFactory emf = Persistence
-			.createEntityManagerFactory("livraria");
+			.createEntityManagerFactory("loja");
 
 	@Produces
 	@RequestScoped
