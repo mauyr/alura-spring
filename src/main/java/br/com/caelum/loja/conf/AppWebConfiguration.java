@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * Created by mauyr on 25/01/17.
  */
 @EnableWebMvc
-@ComponentScan(basePackages={"br.com.caelum.loja.controller"})
+@ComponentScan(basePackages={"br.com.caelum.loja.controller", "br.com.caelum.loja.dao"})
 public class AppWebConfiguration {
 
     @Bean
