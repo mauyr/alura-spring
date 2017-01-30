@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="./produtos" method="post">
+<form action="./gravar" method="post">
     <div>
         <label>Título</label>
         <input type="text" name="titulo"/>

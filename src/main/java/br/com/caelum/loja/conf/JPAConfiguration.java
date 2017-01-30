@@ -2,16 +2,20 @@ package br.com.caelum.loja.conf;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
  * Created by mauyr on 26/01/17.
  */
+@EnableTransactionManagement
 public class JPAConfiguration {
 
     @Bean
@@ -30,7 +34,7 @@ public class JPAConfiguration {
 
         factoryBean.setJpaProperties(props);
 
-        factoryBean.setPackagesToScan("br.com.casadocodigo.loja.model");
+        factoryBean.setPackagesToScan("br.com.caelum.loja.model");
 
         return factoryBean;
     }
@@ -42,9 +46,14 @@ public class JPAConfiguration {
 
         dataSourceConfig.setUrl("jdbc:postgresql://127.0.0.1:5432/loja");
         dataSourceConfig.setUsername("postgres");
-        dataSourceConfig.setValidationQuery("SELECT 1 FROM DUAL");
+        dataSourceConfig.setValidationQuery("SELECT 1");
         dataSourceConfig.setPassword("postgres");
 
         return dataSourceConfig;
+    }
+
+    @Bean
+    public JpaTransactionManager transactionManager(EntityManagerFactory emf){
+        return new JpaTransactionManager(emf);
     }
 }

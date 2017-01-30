@@ -1,5 +1,7 @@
 package br.com.caelum.loja.dao;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
+@Transactional
 public abstract class GenericDao<T, I extends Serializable> {
 
     @PersistenceContext
