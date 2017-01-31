@@ -1,6 +1,9 @@
 package br.com.caelum.loja.conf;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 /**
  * Created by mauyr on 25/01/17.
@@ -15,6 +18,13 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class[] {AppWebConfiguration.class, JPAConfiguration.class};
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding("UTF-8");
+        return new Filter[] {encodingFilter};
     }
 
     @Override

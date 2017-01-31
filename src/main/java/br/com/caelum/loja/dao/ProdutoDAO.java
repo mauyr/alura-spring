@@ -10,5 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class ProdutoDAO extends GenericDao<Produto, Integer> {
 
-
+    public ProdutoDAO() {
+        super(Produto.class);
+    }
 }
