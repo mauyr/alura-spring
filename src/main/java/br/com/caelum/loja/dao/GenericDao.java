@@ -28,11 +28,13 @@ public abstract class GenericDao<T, I extends Serializable> {
 
     public T save(T entity) {
         entityManager.persist(entity);
+        entityManager.flush();
         return entity;
     }
 
     public T update(T entity) {
         entityManager.merge(entity);
+        entityManager.flush();
         return entity;
     }
 
@@ -40,6 +42,7 @@ public abstract class GenericDao<T, I extends Serializable> {
         T entity = findById(id);
         T mergedEntity = entityManager.merge(entity);
         entityManager.remove(mergedEntity);
+        entityManager.flush();
     }
 
     public List<T> findAll() {

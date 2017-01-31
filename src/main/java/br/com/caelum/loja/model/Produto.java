@@ -1,9 +1,8 @@
 package br.com.caelum.loja.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by mauyr on 26/01/17.
@@ -13,9 +12,13 @@ public class Produto implements Serializable {
 
     @Id @GeneratedValue
     private Integer id;
+
     private String titulo;
     private String descricao;
     private int paginas;
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+    private List<Preco> precos;
 
     public String getTitulo() {
         return titulo;
@@ -52,5 +55,13 @@ public class Produto implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public List<Preco> getPrecos() {
+        return precos;
+    }
+
+    public void setPrecos(List<Preco> precos) {
+        this.precos = precos;
     }
 }
