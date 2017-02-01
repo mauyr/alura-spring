@@ -1,6 +1,8 @@
 package br.com.caelum.loja.model;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.Map;
  * Created by mauyr on 01/02/17.
  */
 @Component
+@Scope(WebApplicationContext.SCOPE_SESSION)
 public class CarrinhoCompras {
 
     private Map<CarrinhoItem, Integer> itens = new LinkedHashMap<CarrinhoItem, Integer>();
