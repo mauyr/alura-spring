@@ -8,6 +8,8 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -15,7 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * Created by mauyr on 25/01/17.
  */
 @EnableWebMvc
-@ComponentScan(basePackages={"br.com.caelum.loja.controller", "br.com.caelum.loja.dao"})
+@ComponentScan(basePackages={"br.com.caelum.loja.controller", "br.com.caelum.loja.dao", "br.com.caelum.loja.infra"})
 public class AppWebConfiguration {
 
     @Bean
@@ -43,6 +45,11 @@ public class AppWebConfiguration {
         formatterRegistrar.registerFormatters(conversionService);
 
         return conversionService;
+    }
+
+    @Bean
+    public MultipartResolver multipartResolver(){
+        return new StandardServletMultipartResolver();
     }
 
 }

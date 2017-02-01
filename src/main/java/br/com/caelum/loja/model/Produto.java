@@ -23,6 +23,8 @@ public class Produto implements Serializable {
     @DateTimeFormat
     private Calendar dataLancamento;
 
+    private String caminhoImagemCapa;
+
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     private List<Preco> precos;
 
@@ -77,5 +79,13 @@ public class Produto implements Serializable {
 
     public void setDataLancamento(Calendar dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    public String getCaminhoImagemCapa() {
+        return caminhoImagemCapa;
+    }
+
+    public void setCaminhoImagemCapa(String caminhoImagemCapa) {
+        this.caminhoImagemCapa = caminhoImagemCapa;
     }
 }

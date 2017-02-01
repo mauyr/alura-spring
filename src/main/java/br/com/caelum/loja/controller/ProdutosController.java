@@ -1,6 +1,7 @@
 package br.com.caelum.loja.controller;
 
 import br.com.caelum.loja.dao.ProdutoDAO;
+import br.com.caelum.loja.infra.FileSaver;
 import br.com.caelum.loja.model.Produto;
 import br.com.caelum.loja.model.TipoPreco;
 import br.com.caelum.loja.util.Messages;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,6 +28,9 @@ public class ProdutosController {
 
     @Autowired
     private ProdutoDAO produtoDao;
+
+    @Autowired
+    private FileSaver fileSaver;
 
     @InitBinder
     public void InitBinder(WebDataBinder binder){
@@ -42,10 +47,13 @@ public class ProdutosController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes){
+    public ModelAndView create(MultipartFile imagemCapa, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
             return edit(produto);
         }
+
+        String path = fileSaver.write("imagens-capa", imagemCapa);
+        produto.setCaminhoImagemCapa(path);
 
         produto.getPrecos().forEach(preco->preco.setProduto(produto));
         produtoDao.save(produto);
