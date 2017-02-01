@@ -1,5 +1,7 @@
 package br.com.caelum.loja.model;
 
+import java.math.BigDecimal;
+
 /**
  * Created by mauyr on 01/02/17.
  */
@@ -27,6 +29,14 @@ public class CarrinhoItem {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public BigDecimal getPreco(){
+        return produto.precoPara(tipoPreco);
+    }
+
+    public BigDecimal getTotal(int quantidade) {
+        return this.getPreco().multiply(new BigDecimal(quantidade));
     }
 
     @Override
