@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * Created by mauyr on 25/01/17.
  */
 @EnableWebMvc
-@ComponentScan(basePackages={"br.com.caelum.loja.controller", "br.com.caelum.loja.dao", "br.com.caelum.loja.infra"})
+@ComponentScan(basePackages={"br.com.caelum.loja.controller", "br.com.caelum.loja.dao", "br.com.caelum.loja.infra", "br.com.caelum.loja.model"})
 public class AppWebConfiguration {
 
     @Bean
@@ -25,6 +25,7 @@ public class AppWebConfiguration {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
+        resolver.setExposedContextBeanNames("carrinhoCompras");
         return resolver;
     }
 

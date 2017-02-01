@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,8 @@
 <body>
 
     <article id="${produto.id}">
+
+        <li><a href="/cart" rel="nofollow">Carrinho (${carrinhoCompras.quantidade}) </a></li>
 
         <header id="product-highlight" class="clearfix">
             <div id="product-overview" class="container">
@@ -30,30 +33,28 @@
             </div>
         </header>
 
-        <form action="/cart/add" method="post" class="container">
-            <input type="hidden" value="${produto.id}" value="produtoId"/>
+        <section class="data product-detail">
+            <h2 class="section-title">Dados do livro:</h2>
+            <p>Número de páginas: <span>${produto.paginas}</span></p>
+            <p></p>
+            <p>Data de publicação: <fmt:formatDate pattern="dd/MM/yyyy" value="${produto.dataLancamento.time}"/></p>
+        </section>
+
+        <form action='<c:url value="/carrinho/add" />' method="post" class="container">
+            <input type="hidden" value="${produto.id}" name="produtoId"/>
             <c:forEach items="${produto.precos}" var="preco">
                 <li class="buy-option">
                     <input type="radio" name="tipo" class="variant-radio" id="tipo" value="${preco.tipo}"  checked="checked"  />
                     <label  class="variant-label">
                             ${preco.tipo}
                     </label>
-                    <small class="compare-at-price">R$ 39,90</small>
-                    <p class="variant-price">${preco.valor}</p>
+                    <small class="compare-at-price">R$ ${preco.valor}</small>
                 </li>
             </c:forEach>
 
             <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora"
-                    title="Compre Agora ${produto.titulo}!"></button>
+                    title="Compre Agora ${produto.titulo}!">Compre Agora</button>
         </form>
-
-        <section class="data product-detail">
-            <h2 class="section-title">Dados do livro:</h2>
-            <p>Número de páginas: <span>${produto.paginas}</span></p>
-            <p></p>
-            <p>Data de publicação: ${produto.dataLancamento}</p>
-            <p>Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta uma errata</a></p>
-        </section>
 </article>
 
 </body>
