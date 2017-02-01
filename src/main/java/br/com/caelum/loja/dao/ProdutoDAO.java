@@ -13,4 +13,14 @@ public class ProdutoDAO extends GenericDao<Produto, Integer> {
     public ProdutoDAO() {
         super(Produto.class);
     }
+
+    public Produto findByIdWithDetail(Integer id) {
+        return entityManager.createQuery("select distinct(p) " +
+                "from Produto p " +
+                "join fetch p.precos " +
+                "where p.id = :id", Produto.class)
+                .setParameter("id", id)
+                .getSingleResult();
+
+    }
 }
