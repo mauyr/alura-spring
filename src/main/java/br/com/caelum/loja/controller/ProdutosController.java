@@ -34,7 +34,7 @@ public class ProdutosController {
 
 
     @RequestMapping("/edit")
-    public ModelAndView edit() {
+    public ModelAndView edit(Produto produto) {
         ModelAndView modelAndView = new ModelAndView("produtos/edit");
         modelAndView.addObject("tipos", TipoPreco.values());
 
@@ -44,7 +44,7 @@ public class ProdutosController {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView create(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
-            return edit();
+            return edit(produto);
         }
 
         produto.getPrecos().forEach(preco->preco.setProduto(produto));
