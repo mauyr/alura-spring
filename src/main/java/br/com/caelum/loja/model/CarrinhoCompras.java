@@ -1,6 +1,7 @@
 package br.com.caelum.loja.model;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -14,7 +15,7 @@ import java.util.Map;
  * Created by mauyr on 01/02/17.
  */
 @Component
-@Scope(WebApplicationContext.SCOPE_SESSION)
+@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class CarrinhoCompras implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,6 +24,10 @@ public class CarrinhoCompras implements Serializable {
 
     public void add(CarrinhoItem item){
         itens.put(item, getQuantidade(item) + 1);
+    }
+
+    public void remove(CarrinhoItem item) {
+        itens.remove(item);
     }
 
     public int getQuantidade(CarrinhoItem item) {

@@ -40,6 +40,15 @@ public class CarrinhoComprasController {
         return new ModelAndView("/carrinho/itens");
     }
 
+    @RequestMapping(value = "/remove", method= RequestMethod.POST)
+    public ModelAndView remove(Integer produtoId, TipoPreco tipoPreco){
+        Produto produto = new Produto();
+        produto.setId(produtoId);
+        CarrinhoItem carrinhoItem = new CarrinhoItem(produto, tipoPreco);
+        carrinho.remove(carrinhoItem);
+        return new ModelAndView("/carrinho/itens");
+    }
+
     private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipo){
         Produto produto = produtoDao.findByIdWithDetail(produtoId);
         CarrinhoItem carrinhoItem = new CarrinhoItem(produto, tipo);
