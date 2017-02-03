@@ -7,6 +7,7 @@ import br.com.caelum.loja.model.TipoPreco;
 import br.com.caelum.loja.util.Messages;
 import br.com.caelum.loja.validation.ProdutoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -48,6 +49,7 @@ public class ProdutosController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
+    @CacheEvict(value = "produtos", allEntries = true)
     public ModelAndView create(MultipartFile imagemCapa, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
             return edit(produto);
@@ -63,6 +65,7 @@ public class ProdutosController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
+    @CacheEvict(value = "produtos")
     public ModelAndView update(Produto produto, RedirectAttributes redirectAttributes){
         produto.getPrecos().forEach(preco->preco.setProduto(produto));
         produtoDao.update(produto);
