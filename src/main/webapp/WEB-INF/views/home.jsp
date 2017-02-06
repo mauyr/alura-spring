@@ -7,6 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Livros de Java, Android, iPhone, Ruby, PHP e muito mais - Casa do Código</title>
+
+    <c:url value="/webjars/bootstrap/3.3.7-1/css" var="webjarsPath" />
+    <link rel="stylesheet" href="${webjarsPath}/bootstrap.css">
+    <link rel="stylesheet" href="${webjarsPath}/bootstrap-theme.css">
 </head>
 <body>
 
