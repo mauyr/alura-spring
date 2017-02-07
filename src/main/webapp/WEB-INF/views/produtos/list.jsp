@@ -13,22 +13,24 @@
     <link rel="stylesheet" href="${webjarsPath}/bootstrap-theme.css">
 </head>
 <body>
-<h1>Lista de Produtos</h1>
-<p> ${message} </p>
-<table>
-    <tr>
-        <td>Título</td>
-        <td>Descrição</td>
-        <td>Páginas</td>
-    </tr>
-
-    <c:forEach items="${produtos}" var="produto">
+<div class="container">
+    <h1>Lista de Produtos</h1>
+    <p> ${message} </p>
+    <table class="table table-striped table-hover">
         <tr>
-            <td><a href="${s:mvcUrl('PC#detail').arg(0,produto.id).build()}">${produto.titulo}</a></td>
-            <td>${produto.descricao}</td>
-            <td>${produto.paginas}</td>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Páginas</th>
         </tr>
-    </c:forEach>
-</table>
+
+        <c:forEach items="${produtos}" var="produto">
+            <tr>
+                <td><a href="${s:mvcUrl('PC#detail').arg(0,produto.id).build()}">${produto.titulo}</a></td>
+                <td>${produto.descricao}</td>
+                <td>${produto.paginas}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 </body>
 </html>
