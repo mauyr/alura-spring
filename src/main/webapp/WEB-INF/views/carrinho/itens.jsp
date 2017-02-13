@@ -35,9 +35,9 @@
     <tfoot>
     <tr>
         <td colspan="3">
-            <form action="<c:url value="/pagamento/finalizar" />" method="post">
+            <form:form action="${s:mvcUrl('PC#finalizar').build()}" method="post">
                 <input type="submit" class="checkout" name="checkout" value="Finalizar compra"/>
-            </form>
+            </form:form>
         </td>
         <td class="quantity-input-cell">
             <input type="submit" class="update-cart" disabled="disabled" name="update" value=""/>

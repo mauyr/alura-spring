@@ -31,6 +31,7 @@ public class JPAConfiguration {
         props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         props.setProperty("hibernate.show_sql", "true");
         props.setProperty("hibernate.hbm2ddl.auto", "update");
+        props.setProperty("hibernate.hbm2ddl.import_files", "db/initial_data.sql");
 
         factoryBean.setJpaProperties(props);
 

@@ -44,7 +44,7 @@
             <p>Data de publicação: <fmt:formatDate pattern="dd/MM/yyyy" value="${produto.dataLancamento.time}"/></p>
         </section>
 
-        <form action='<c:url value="/carrinho/add" />' method="post" class="container">
+        <form:form servletRelativeAction="/carrinho/add" method="post" cssClass="container">
             <input type="hidden" value="${produto.id}" name="produtoId"/>
             <c:forEach items="${produto.precos}" var="preco">
                 <li class="buy-option">
@@ -58,7 +58,7 @@
 
             <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora"
                     title="Compre Agora ${produto.titulo}!">Compre Agora</button>
-        </form>
+        </form:form>
 </article>
 
 </body>

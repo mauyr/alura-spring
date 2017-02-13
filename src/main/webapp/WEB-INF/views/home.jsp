@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +27,21 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="${s:mvcUrl('PC#list').build()}">Lista de Produtos</a></li>
-                <li><a href="${s:mvcUrl('PC#edit').build()}">Cadastro de Produtos</a></li>
+                <security:authorize access="hasRole('ROLE_ADMIN')">
+                    <li><a href="${s:mvcUrl('PC#list').build()}">Lista de Produtos</a></li>
+                    <li><a href="${s:mvcUrl('PC#edit').build()}">Cadastro de Produtos</a></li>
+                </security:authorize>
+
+                <li><a href="/cart" rel="nofollow">Carrinho</a></li>
+                <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        <security:authentication property="principal" var="usuario"/>
+                        Usuário:
+                    </a>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div>
