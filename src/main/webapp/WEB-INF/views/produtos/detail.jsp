@@ -1,21 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Livros de Java, Android, iPhone, Ruby, PHP e muito mais - Casa do Código</title>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 
-    <c:url value="/webjars/bootstrap/3.3.7-1/css" var="webjarsPath" />
-    <link rel="stylesheet" href="${webjarsPath}/bootstrap.css">
-    <link rel="stylesheet" href="${webjarsPath}/bootstrap-theme.css">
-</head>
-<body>
-
+<tags:pageTemplate titulo="${produto.titulo}">
     <article id="${produto.id}">
 
         <li><a href="/cart" rel="nofollow">Carrinho (${carrinhoCompras.quantidade}) </a></li>
@@ -59,7 +48,5 @@
             <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora"
                     title="Compre Agora ${produto.titulo}!">Compre Agora</button>
         </form:form>
-</article>
-
-</body>
-</html>
+    </article>
+</tags:pageTemplate>
