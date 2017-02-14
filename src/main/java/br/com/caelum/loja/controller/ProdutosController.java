@@ -58,7 +58,6 @@ public class ProdutosController {
         String path = fileSaver.write("imagens-capa", imagemCapa);
         produto.setCaminhoImagemCapa(path);
 
-        produto.getPrecos().forEach(preco->preco.setProduto(produto));
         produtoDao.save(produto);
         redirectAttributes.addFlashAttribute("message", Messages.ITEM_SAVED.getMessage("Produto"));
         return new ModelAndView("redirect:/produtos");

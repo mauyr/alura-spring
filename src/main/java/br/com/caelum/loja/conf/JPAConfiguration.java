@@ -2,6 +2,7 @@ package br.com.caelum.loja.conf;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -27,11 +28,7 @@ public class JPAConfiguration {
 
         factoryBean.setDataSource(dataSource());
 
-        Properties props = new Properties();
-        props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        props.setProperty("hibernate.show_sql", "true");
-        props.setProperty("hibernate.hbm2ddl.auto", "update");
-        props.setProperty("hibernate.hbm2ddl.import_files", "db/initial_data.sql");
+        Properties props = aditionalProperties();
 
         factoryBean.setJpaProperties(props);
 
@@ -40,7 +37,17 @@ public class JPAConfiguration {
         return factoryBean;
     }
 
+    private Properties aditionalProperties() {
+        Properties props = new Properties();
+        props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        props.setProperty("hibernate.show_sql", "true");
+        props.setProperty("hibernate.hbm2ddl.auto", "update");
+        props.setProperty("hibernate.hbm2ddl.import_files", "db/initial_data.sql");
+        return props;
+    }
+
     @Bean
+    @Profile("dev")
     DataSource dataSource() {
         BasicDataSource dataSourceConfig = new BasicDataSource();
         dataSourceConfig.setDriverClassName("org.postgresql.Driver");

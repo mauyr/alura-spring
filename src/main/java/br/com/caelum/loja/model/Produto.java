@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Produto implements Serializable {
     private String caminhoImagemCapa;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-    private List<Preco> precos;
+    private List<Preco> precos = new ArrayList<>();
 
     public String getTitulo() {
         return titulo;
