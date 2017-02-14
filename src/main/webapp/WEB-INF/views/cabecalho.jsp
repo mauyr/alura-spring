@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <nav class="navbar navbar-inverse">
     <div class="container">
@@ -20,8 +21,24 @@
                     <li><a href="${s:mvcUrl('PC#edit').build()}">Cadastro de Produtos</a></li>
                 </security:authorize>
 
-                <li><a href="/cart" rel="nofollow">Carrinho</a></li>
-                <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
+                <li><a href="/cart" rel="nofollow">
+                    <s:message code="menu.carrinho" arguments="${carrinhoCompras.quantidade}" />
+                </a></li>
+                <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">
+                    <s:message code="menu.sobre" />
+                </a></li>
+
+                <li>
+                    <a href="?locale=pt" rel="nofollow">
+                        <fmt:message key="menu.pt"/>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="?locale=en_US" rel="nofollow">
+                        <fmt:message key="menu.en"/>
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
