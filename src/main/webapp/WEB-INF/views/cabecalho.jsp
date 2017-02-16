@@ -21,7 +21,7 @@
                     <li><a href="${s:mvcUrl('PC#edit').build()}">Cadastro de Produtos</a></li>
                 </security:authorize>
 
-                <li><a href="/cart" rel="nofollow">
+                <li><a href="${s:mvcUrl('CCC#itens').build()}" rel="nofollow">
                     <s:message code="menu.carrinho" arguments="${carrinhoCompras.quantidade}" />
                 </a></li>
                 <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">

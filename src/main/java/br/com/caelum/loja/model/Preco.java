@@ -50,4 +50,9 @@ public class Preco implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return this.tipo.name() + " - " + this.valor;
+    }
 }

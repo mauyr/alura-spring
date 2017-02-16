@@ -5,7 +5,7 @@
 
 <tags:pageTemplate titulo="Livros de Java, Android, IOs, Mobile e muito mais...">
 
-    <form:form action="${s:mvcUrl('PC#create').build()}" method="post" commandName="produto" enctype="multipart/form-data">
+    <form:form servletRelativeAction="${s:mvcUrl('PC#create').build()}" method="post" commandName="produto" enctype="multipart/form-data">
         <div>
             <label>Título</label>
             <form:input path="titulo"/>

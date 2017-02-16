@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by mauyr on 26/01/17.
@@ -16,6 +17,10 @@ public class ProdutoDAO extends GenericDao<Produto, Integer> {
 
     public ProdutoDAO() {
         super(Produto.class);
+    }
+
+    public List<Produto> findAllWithDetail() {
+        return entityManager.createQuery("select distinct(p) from Produto p join fetch p.precos").getResultList();
     }
 
     public Produto findByIdWithDetail(Integer id) {
