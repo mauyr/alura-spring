@@ -1,7 +1,10 @@
 package br.com.caelum.loja.conf;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -16,8 +19,15 @@ import java.util.Properties;
 /**
  * Created by mauyr on 26/01/17.
  */
+@Configuration
 @EnableTransactionManagement
 public class JPAConfiguration {
+
+    @Value("${database.config.filename}")
+    private String databaseConfig;
+
+    @Value("${database.config.dialect}")
+    private String dialect;
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -39,9 +49,9 @@ public class JPAConfiguration {
 
     private Properties aditionalProperties() {
         Properties props = new Properties();
-        props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        props.setProperty("hibernate.dialect", this.dialect);
         props.setProperty("hibernate.show_sql", "true");
-        props.setProperty("hibernate.hbm2ddl.auto", "update");
+        props.setProperty("hibernate.hbm2ddl.auto", "create");
         props.setProperty("hibernate.hbm2ddl.import_files", "db/initial_data.sql");
         return props;
     }

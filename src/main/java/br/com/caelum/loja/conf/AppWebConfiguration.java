@@ -1,6 +1,7 @@
 package br.com.caelum.loja.conf;
 
 import com.google.common.cache.CacheBuilder;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
@@ -8,6 +9,7 @@ import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
@@ -35,6 +37,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by mauyr on 25/01/17.
  */
+@Configuration
+@EnableAutoConfiguration
 @EnableWebMvc
 @EnableCaching
 @ComponentScan(basePackages={"br.com.caelum.loja.controller", "br.com.caelum.loja.dao", "br.com.caelum.loja.infra", "br.com.caelum.loja.model"})
