@@ -17,6 +17,7 @@ import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
@@ -128,6 +129,12 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LocaleChangeInterceptor());
+        registry.addWebRequestInterceptor(getOpenEntityManagerInViewInterceptor());
+    }
+
+    @Bean
+    public OpenEntityManagerInViewInterceptor getOpenEntityManagerInViewInterceptor() {
+        return new OpenEntityManagerInViewInterceptor();
     }
 
     @Override
