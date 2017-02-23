@@ -1,7 +1,7 @@
 package br.com.caelum.loja.dao;
 
 import br.com.caelum.loja.builder.ProdutoBuilder;
-import br.com.caelum.loja.conf.JPAConfiguration;
+import br.com.caelum.loja.domain.repository.ProdutoRepository;
 import br.com.caelum.loja.model.Produto;
 import br.com.caelum.loja.model.TipoPreco;
 import org.junit.Assert;
@@ -21,23 +21,11 @@ import java.util.List;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JPAConfiguration.class,ProdutoDAO.class})
+@ContextConfiguration(classes = {ProdutoRepository.class})
 @ActiveProfiles("test")
 public class ProdutoDAOTest {
 
     @Autowired
-    private ProdutoDAO produtoDAO;
+    private ProdutoRepository repository;
 
-    @Test
-    @Transactional
-    public void deveSomarTodosOsPrecosPorTipoLivro() {
-        List<Produto> livrosImpressos = ProdutoBuilder.newProduto(TipoPreco.IMPRESSO, BigDecimal.TEN).more(3).buildAll();
-        List<Produto> livrosEbook = ProdutoBuilder.newProduto(TipoPreco.EBOOK, BigDecimal.TEN).more(3).buildAll();
-
-        livrosImpressos.stream().forEach(produtoDAO::save);
-        livrosEbook.stream().forEach(produtoDAO::save);
-
-        BigDecimal valor = produtoDAO.somaPrecosPorTipo(TipoPreco.EBOOK);
-        Assert.assertEquals(new BigDecimal(40).setScale(2), valor);
-    }
 }

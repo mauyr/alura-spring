@@ -1,6 +1,7 @@
 package br.com.caelum.loja.controller;
 
 import br.com.caelum.loja.dao.ProdutoDAO;
+import br.com.caelum.loja.domain.repository.ProdutoRepository;
 import br.com.caelum.loja.model.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,14 +18,14 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    ProdutoDAO produtoDao;
+    ProdutoRepository repository;
 
     @RequestMapping("/")
     @Cacheable(value="produtos")
     public ModelAndView index() {
-        List<Produto> produtos = produtoDao.findAll();
+//        List<Produto> produtos = repository.findAll();
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("produtos", produtos);
+//        modelAndView.addObject("produtos", produtos);
         return modelAndView;
     }
 

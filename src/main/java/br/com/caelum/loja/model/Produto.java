@@ -22,6 +22,9 @@ public class Produto implements Serializable {
     private String descricao;
     private int paginas;
 
+    @ManyToMany
+    private List<Categoria> categorias = new ArrayList<>();
+
     @DateTimeFormat
     private Calendar dataLancamento;
 
@@ -115,5 +118,13 @@ public class Produto implements Serializable {
         if (id != other.id)
             return false;
         return true;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
 }

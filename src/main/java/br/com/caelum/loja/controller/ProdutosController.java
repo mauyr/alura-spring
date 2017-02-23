@@ -1,6 +1,7 @@
 package br.com.caelum.loja.controller;
 
 import br.com.caelum.loja.dao.ProdutoDAO;
+import br.com.caelum.loja.domain.repository.ProdutoRepository;
 import br.com.caelum.loja.infra.FileSaver;
 import br.com.caelum.loja.model.Produto;
 import br.com.caelum.loja.model.TipoPreco;
@@ -27,7 +28,7 @@ import javax.validation.Valid;
 public class ProdutosController {
 
     @Autowired
-    private ProdutoDAO produtoDao;
+    private ProdutoRepository repository;
 
     @Autowired
     private FileSaver fileSaver;
@@ -56,7 +57,7 @@ public class ProdutosController {
         String path = fileSaver.write("imagens-capa", imagemCapa);
         produto.setCaminhoImagemCapa(path);
 
-        produtoDao.save(produto);
+        repository.save(produto);
         redirectAttributes.addFlashAttribute("message", Messages.ITEM_SAVED.getMessage("Produto"));
         return new ModelAndView("redirect:/produtos");
     }
@@ -65,7 +66,7 @@ public class ProdutosController {
     @CacheEvict(value = "produtos")
     public ModelAndView update(Produto produto, RedirectAttributes redirectAttributes){
         produto.getPrecos().forEach(preco->preco.setProduto(produto));
-        produtoDao.update(produto);
+        repository.save(produto);
         redirectAttributes.addFlashAttribute("message", Messages.ITEM_SAVED.getMessage("Produto"));
         return new ModelAndView("redirect:/produtos");
     }
@@ -73,7 +74,7 @@ public class ProdutosController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView list(Produto produto){
         ModelAndView modelAndView = new ModelAndView("produtos/list");
-        modelAndView.addObject("produtos", produtoDao.findAllWithDetail());
+//        modelAndView.addObject("produtos", repository.findAllWithDetail());
 
         return modelAndView;
     }
@@ -81,7 +82,7 @@ public class ProdutosController {
     @RequestMapping("/{id}")
     public ModelAndView detail(@PathVariable("id") int id){
         ModelAndView modelAndView = new ModelAndView("/produtos/detail");
-        Produto produto = produtoDao.findByIdWithDetail(id);
+        Produto produto = repository.findByIdWithDetail(id);
         modelAndView.addObject("produto", produto);
         return modelAndView;
     }

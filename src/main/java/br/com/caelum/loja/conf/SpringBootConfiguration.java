@@ -4,13 +4,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Created by mauyr on 17/02/17.
  */
 @SpringBootApplication
+@EnableJpaRepositories("br.com.caelum.loja.domain.repository")
+@EntityScan("br.com.caelum.loja.model")
 public class SpringBootConfiguration extends SpringBootServletInitializer {
 
     private static final Logger log = LoggerFactory.getLogger(SpringBootConfiguration.class);

@@ -2,7 +2,6 @@ package br.com.caelum.loja.controller;
 
 import br.com.caelum.loja.conf.AppWebConfiguration;
 import br.com.caelum.loja.conf.DataSourceConfigurationTest;
-import br.com.caelum.loja.conf.JPAConfiguration;
 import br.com.caelum.loja.conf.SecurityConfiguration;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +25,7 @@ import javax.servlet.Filter;
  */
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JPAConfiguration.class, AppWebConfiguration.class, DataSourceConfigurationTest.class, SecurityConfiguration.class})
+@ContextConfiguration(classes = {AppWebConfiguration.class, DataSourceConfigurationTest.class, SecurityConfiguration.class})
 @ActiveProfiles("test")
 public class ProdutosControllerTest {
     @Autowired

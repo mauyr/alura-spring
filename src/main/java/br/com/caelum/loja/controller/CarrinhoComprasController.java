@@ -1,6 +1,7 @@
 package br.com.caelum.loja.controller;
 
 import br.com.caelum.loja.dao.ProdutoDAO;
+import br.com.caelum.loja.domain.repository.ProdutoRepository;
 import br.com.caelum.loja.model.CarrinhoCompras;
 import br.com.caelum.loja.model.CarrinhoItem;
 import br.com.caelum.loja.model.Produto;
@@ -22,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CarrinhoComprasController {
 
     @Autowired
-    private ProdutoDAO produtoDao;
+    ProdutoRepository repository;
 
     @Autowired
     private CarrinhoCompras carrinho;
@@ -50,7 +51,7 @@ public class CarrinhoComprasController {
     }
 
     private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipo){
-        Produto produto = produtoDao.findByIdWithDetail(produtoId);
+        Produto produto = repository.findByIdWithDetail(produtoId);
         CarrinhoItem carrinhoItem = new CarrinhoItem(produto, tipo);
         return carrinhoItem;
     }
