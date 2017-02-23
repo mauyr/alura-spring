@@ -33,18 +33,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/produtos/edit").hasRole("ADMIN")
-                .antMatchers("/carrinho/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/produtos").hasRole("ADMIN")
-                .antMatchers("/produtos/**").permitAll()
-                .antMatchers("/payment/**").permitAll()
-                .antMatchers("/").permitAll()
-                .antMatchers("/webjars/**").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").permitAll()
-                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+//        TODO: Corrigir spring security após realizar refactors do template a adicionar paths do actuator como permit
+//        http.authorizeRequests()
+//                .antMatchers("/produtos/edit").hasRole("ADMIN")
+//                .antMatchers("/carrinho/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.GET, "/produtos").hasRole("ADMIN")
+//                .antMatchers("/produtos/**").permitAll()
+//                .antMatchers("/payment/**").permitAll()
+//                .antMatchers("/").permitAll()
+//                .antMatchers("/webjars/**").permitAll()
+//                .anyRequest().authenticated()
+//                .and().formLogin().loginPage("/login").permitAll()
+//                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+        http.authorizeRequests().antMatchers("**").permitAll();
     }
 
     @Autowired
