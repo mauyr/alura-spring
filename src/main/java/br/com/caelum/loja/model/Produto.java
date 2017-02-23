@@ -33,6 +33,9 @@ public class Produto implements Serializable {
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     private List<Preco> precos = new ArrayList<>();
 
+    @Version
+    private Integer versao;
+
     public String getTitulo() {
         return titulo;
     }
