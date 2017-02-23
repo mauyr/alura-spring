@@ -19,8 +19,8 @@ import java.util.Properties;
 /**
  * Created by mauyr on 26/01/17.
  */
-@Configuration
-@EnableTransactionManagement
+//@Configuration
+//@EnableTransactionManagement
 public class JPAConfiguration {
 
     @Value("${database.config.filename}")
@@ -29,7 +29,7 @@ public class JPAConfiguration {
     @Value("${database.config.dialect}")
     private String dialect;
 
-    @Bean
+//    @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -56,8 +56,8 @@ public class JPAConfiguration {
         return props;
     }
 
-    @Bean
-    @Profile("dev")
+//    @Bean
+//    @Profile("dev")
     DataSource dataSource() {
         BasicDataSource dataSourceConfig = new BasicDataSource();
         dataSourceConfig.setDriverClassName("org.postgresql.Driver");
@@ -70,7 +70,7 @@ public class JPAConfiguration {
         return dataSourceConfig;
     }
 
-    @Bean
+//    @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory emf){
         return new JpaTransactionManager(emf);
     }
