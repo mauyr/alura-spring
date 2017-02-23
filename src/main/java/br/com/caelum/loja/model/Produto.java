@@ -130,4 +130,12 @@ public class Produto implements Serializable {
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
+
+    public Integer getVersao() {
+        return versao;
+    }
+
+    public void setVersao(Integer versao) {
+        this.versao = versao;
+    }
 }
