@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories("br.com.caelum.loja.domain.repository")
 @EntityScan("br.com.caelum.loja.model")
+@EnableCaching
 public class SpringBootConfiguration extends SpringBootServletInitializer {
 
     private static final Logger log = LoggerFactory.getLogger(SpringBootConfiguration.class);
